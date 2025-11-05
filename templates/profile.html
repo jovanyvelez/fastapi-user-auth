@@ -1,0 +1,36 @@
+<!-- templates/profile.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Perfil</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .nav { background: #f0f0f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .profile-card { background: #fff3cd; padding: 30px; border-radius: 8px; border-left: 4px solid #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Inicio</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/profile">Perfil</a>
+        <a href="/dashboard/reportes">Reportes</a>
+        <a href="/configuracion">Configuración</a>
+        <a href="/logout">Cerrar Sesión</a>
+    </div>
+
+    <div class="profile-card">
+        <h2>👤 Perfil de Usuario</h2>
+        <p>Ruta: <code>/profile</code></p>
+        <p><strong>Usuario:</strong> {{ user.username }}</p>
+        <p><strong>Nombre completo:</strong> {{ user.name }}</p>
+        <p><strong>Estado:</strong> Sesión activa ✅</p>
+    </div>
+
+    <p style="margin-top: 30px;">
+        Si intentas acceder directamente a esta URL sin sesión, serás redirigido al login
+        y después de autenticarte volverás aquí automáticamente.
+    </p>
+</body>
+</html>

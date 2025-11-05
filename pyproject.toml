@@ -1,0 +1,12 @@
+[project]
+name = "fastapi-user-auth"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.121.0",
+    "itsdangerous>=2.2.0",
+    "passlib[argon2]>=1.7.4",
+    "sqlalchemy>=2.0.44",
+]

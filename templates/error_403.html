@@ -1,0 +1,25 @@
+<!-- templates/error_403.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Acceso Denegado</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 100px auto; padding: 20px; text-align: center; }
+        .error-box { background: #ffebee; padding: 40px; border-radius: 8px; border: 2px solid #dc3545; }
+        .error-code { font-size: 72px; color: #dc3545; margin: 0; }
+        .error-message { font-size: 24px; color: #333; margin: 20px 0; }
+        a { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #007bff; 
+            color: white; text-decoration: none; border-radius: 3px; }
+        a:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <p class="error-code">🚫 403</p>
+        <p class="error-message">Acceso Denegado</p>
+        <p>{{ message }}</p>
+        <p>No tienes permisos suficientes para acceder a este recurso.</p>
+        <a href="/">Volver al Inicio</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!-- templates/admin.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel de Administración</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .nav { background: #f0f0f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .header { background: #ffebee; padding: 30px; border-radius: 8px; border-left: 4px solid #dc3545; }
+        .admin-badge { background: #dc3545; color: white; padding: 5px 10px; border-radius: 3px; font-size: 14px; }
+        .card { background: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Inicio</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/profile">Perfil</a>
+        <a href="/dashboard/reportes">Reportes</a>
+        <a href="/admin">🔐 Admin</a>
+        <a href="/configuracion">Configuración</a>
+        <a href="/logout">Cerrar Sesión</a>
+    </div>
+
+    <div class="header">
+        <h1>🔐 Panel de Administración</h1>
+        <p>Ruta: <code>/admin</code> <span class="admin-badge">SOLO ADMINS</span></p>
+        <p>Usuario: <strong>{{ user.name }}</strong> ({{ user.username }})</p>
+        <p>Rol: <strong>{{ user.role }}</strong></p>
+    </div>
+
+    <div class="card">
+        <h3>✅ ¡Tienes acceso de administrador!</h3>
+        <p>Esta ruta usa la dependencia <code>require_admin</code> que se encadena con <code>get_current_user</code>:</p>
+        <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
+@app.get("/admin")
+async def admin_panel(
+    request: Request,
+    admin: Annotated[User, Depends(require_admin)]
+):
+    # require_admin verifica automáticamente:
+    # 1. Que haya sesión (via get_current_user)
+    # 2. Que user.role == "admin"
+        </pre>
+    </div>
+
+    <div class="card">
+        <h3>🧪 Prueba el control de permisos:</h3>
+        <ol>
+            <li>Cierra sesión</li>
+            <li>Inicia sesión como <strong>usuario / pass123</strong> (rol: user)</li>
+            <li>Intenta acceder a <code>/admin</code></li>
+            <li>Verás un error 403 (Acceso Denegado) ❌</li>
+            <li>Ahora inicia sesión como <strong>admin / admin123</strong> (rol: admin)</li>
+            <li>Accede a <code>/admin</code> sin problemas ✅</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h3>📝 Cómo funciona require_admin:</h3>
+        <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
+def require_admin(user: Annotated[User, Depends(get_current_user)]) -> User:
+    """Dependencia encadenada"""
+    if user.role != "admin":
+        raise HTTPException(status_code=403, detail="Acceso denegado")
+    return user
+        </pre>
+        <p>FastAPI ejecuta las dependencias en orden:</p>
+        <ul>
+            <li>1️⃣ Ejecuta <code>get_current_user</code> → valida sesión</li>
+            <li>2️⃣ Ejecuta <code>require_admin</code> → valida rol</li>
+            <li>3️⃣ Si ambas pasan, ejecuta tu función</li>
+        </ul>
+    </div>
+</body>
+</html>

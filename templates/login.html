@@ -1,0 +1,39 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iniciar Sesión</title>
+    <style>
+        body { font-family: Arial; max-width: 400px; margin: 100px auto; padding: 20px; }
+        form { background: #f9f9f9; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; border: 1px solid #ddd; border-radius: 3px; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; 
+                 cursor: pointer; border-radius: 3px; font-size: 16px; }
+        button:hover { background: #218838; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 3px; margin-bottom: 15px; }
+        .info { background: #d1ecf1; color: #0c5460; padding: 10px; border-radius: 3px; margin-bottom: 15px; font-size: 14px; }
+        a { display: block; text-align: center; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <form method="post" action="/login">
+        <h2>Iniciar Sesión</h2>
+        
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <div class="info">
+            <strong>Usuarios de prueba:</strong><br>
+            admin / admin123<br>
+            usuario / pass123
+        </div>
+
+        <input type="text" name="username" placeholder="Usuario" required autofocus>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Ingresar</button>
+        
+        <a href="/">Volver al inicio</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .nav { background: #f0f0f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .user-info { background: #e8f5e9; padding: 10px; border-radius: 5px; }
+        button, a.btn { padding: 10px 20px; background: #007bff; color: white; border: none; 
+                        cursor: pointer; text-decoration: none; border-radius: 3px; display: inline-block; }
+        button:hover, a.btn:hover { background: #0056b3; }
+        .test-links { background: #fff3cd; padding: 15px; border-radius: 5px; margin-top: 20px; }
+        .test-links a { display: block; margin: 5px 0; }
+        .admin-badge { background: #dc3545; color: white; padding: 3px 8px; border-radius: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Inicio</a>
+        {% if user %}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/profile">Perfil</a>
+            <a href="/dashboard/reportes">Reportes</a>
+            {% if user.role == "admin" %}
+                <a href="/admin">🔐 Admin</a>
+            {% endif %}
+            <a href="/configuracion">Configuración</a>
+            <a href="/logout">Cerrar Sesión</a>
+        {% else %}
+            <a href="/login">Iniciar Sesión</a>
+        {% endif %}
+    </div>
+
+    <h1>Sistema con Redirect After Login ✨</h1>
+    
+    {% if user %}
+        <div class="user-info">
+            <p>✅ <strong>Sesión activa:</strong> {{ user.name }} ({{ user.username }})</p>
+        </div>
+    {% else %}
+        <p>No has iniciado sesión. <a href="/login" class="btn">Iniciar Sesión</a></p>
+        
+        <div class="test-links">
+            <h3>🧪 Prueba el redirect automático:</h3>
+            <p>Haz clic en cualquiera de estos enlaces sin iniciar sesión:</p>
+            <a href="/dashboard">→ Dashboard</a>
+            <a href="/profile">→ Perfil</a>
+            <a href="/dashboard/reportes">→ Reportes</a>
+            <a href="/configuracion">→ Configuración</a>
+            <p><strong>¡Después de iniciar sesión volverás automáticamente a donde querías ir! 🎯</strong></p>
+        </div>
+    {% endif %}
+
+    <h2>¿Qué hay de nuevo?</h2>
+    <ul>
+        <li>✅ Si intentas acceder a una ruta protegida sin sesión, el sistema <strong>recuerda dónde querías ir</strong></li>
+        <li>✅ Después de iniciar sesión, <strong>vuelves automáticamente</strong> a esa ruta</li>
+        <li>✅ Ya no tienes que navegar manualmente de nuevo</li>
+        <li>✅ Experiencia de usuario mucho mejor</li>
+    </ul>
+</body>
+</html>

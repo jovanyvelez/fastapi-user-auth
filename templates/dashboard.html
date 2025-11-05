@@ -1,0 +1,40 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .nav { background: #f0f0f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .welcome { background: #d4edda; padding: 20px; border-radius: 5px; border-left: 4px solid #28a745; }
+        .card { background: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Inicio</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/profile">Perfil</a>
+        <a href="/dashboard/reportes">Reportes</a>
+        <a href="/configuracion">Configuración</a>
+        <a href="/logout">Cerrar Sesión</a>
+    </div>
+
+    <div class="welcome">
+        <h1>Dashboard - ¡Bienvenido, {{ user.name }}! 🎉</h1>
+        <p>Ruta: <code>/dashboard</code></p>
+    </div>
+
+    <div class="card">
+        <h3>🎯 ¿Llegaste aquí después de hacer login?</h3>
+        <p>Si intentaste acceder directamente a esta ruta sin sesión, el sistema:</p>
+        <ol>
+            <li>Detectó que no había sesión activa</li>
+            <li>Guardó esta URL (<code>/dashboard</code>) en tu sesión</li>
+            <li>Te redirigió al login</li>
+            <li>Después de autenticarte, te trajo de vuelta aquí automáticamente ✨</li>
+        </ol>
+    </div>
+</body>
+</html>

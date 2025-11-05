@@ -1,0 +1,44 @@
+<!-- templates/reportes.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reportes</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .nav { background: #f0f0f0; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        .header { background: #e3f2fd; padding: 30px; border-radius: 8px; border-left: 4px solid #2196f3; }
+        .highlight { background: #ffecb3; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Inicio</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/profile">Perfil</a>
+        <a href="/dashboard/reportes">Reportes</a>
+        <a href="/configuracion">Configuración</a>
+        <a href="/logout">Cerrar Sesión</a>
+    </div>
+
+    <div class="header">
+        <h1>📊 Módulo de Reportes</h1>
+        <p>Ruta: <code>/dashboard/reportes</code></p>
+        <p>Usuario: <strong>{{ user.name }}</strong></p>
+    </div>
+
+    <div class="highlight">
+        <h3>🧪 Prueba el redirect aquí:</h3>
+        <ol>
+            <li>Cierra sesión (botón arriba)</li>
+            <li>Copia esta URL: <code>http://localhost:8000/dashboard/reportes</code></li>
+            <li>Pégala directamente en el navegador</li>
+            <li>Inicia sesión cuando te lo pida</li>
+            <li><strong>¡Volverás automáticamente a esta página! 🎯</strong></li>
+        </ol>
+    </div>
+
+    <p>Esta es una ruta anidada (<code>/dashboard/reportes</code>) para demostrar que el
+    sistema funciona con cualquier estructura de URLs.</p>
+</body>
+</html>

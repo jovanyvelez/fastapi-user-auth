@@ -1,6 +1,6 @@
 from passlib.context import CryptContext
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 # ==================== CONFIGURACIÓN SQLALCHEMY ====================
 

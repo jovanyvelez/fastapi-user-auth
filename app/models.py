@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseModel, Field
 
 
@@ -8,7 +6,7 @@ class User(BaseModel):
 
     username: str = Field(..., min_length=3, max_length=50)
     name: str = Field(..., min_length=1, max_length=100)
-    email: Optional[str] = None
+    email: str | None = None
     role: str = "user"  # Útil para roles/permisos
 
     class Config:
@@ -22,5 +20,5 @@ class UserInDB(BaseModel):
     username: str
     name: str
     hashed_pass: str  # Hasheado con argon2
-    email: Optional[str] = None
+    email: str | None = None
     role: str = "user"

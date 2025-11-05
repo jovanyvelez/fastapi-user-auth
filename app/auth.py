@@ -1,4 +1,4 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
 from fastapi import Depends, HTTPException, Request
 
@@ -26,7 +26,7 @@ def get_current_user(request: Request) -> User:
         raise HTTPException(status_code=401, detail="Sesión inválida")
 
 
-def get_optional_user(request: Request) -> Optional[User]:
+def get_optional_user(request: Request) -> User | None:
     """Devuelve User si existe, None si no hay sesión"""
     user_data = request.session.get("user")
     if not user_data:

@@ -9,4 +9,5 @@ dependencies = [
     "itsdangerous>=2.2.0",
     "passlib[argon2]>=1.7.4",
     "sqlalchemy>=2.0.44",
+    "types-passlib>=1.7.7.20250602",
 ]

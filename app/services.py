@@ -1,7 +1,5 @@
 """Servicios de lógica de negocio"""
 
-from typing import Optional
-
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
@@ -13,7 +11,7 @@ class AuthService:
     """Servicio para manejar la autenticación de usuarios"""
 
     @staticmethod
-    def authenticate_user(db: Session, username: str, password: str) -> Optional[User]:
+    def authenticate_user(db: Session, username: str, password: str) -> User | None:
         """
         Autentica un usuario verificando sus credenciales.
 
